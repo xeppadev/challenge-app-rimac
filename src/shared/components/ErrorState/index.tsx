@@ -1,9 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Button } from "@/shared/components/Button";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
-import { Button } from "@/shared/components/Button";
 
 interface ErrorStateProps {
   title?: string;

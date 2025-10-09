@@ -1,15 +1,15 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View, Alert, Image } from "react-native";
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { CheckboxField } from "@/features/onboarding/presentation/components/home/CheckboxField";
+import { DocumentInput } from "@/features/onboarding/presentation/components/home/DocumentInput";
+import { FormField } from "@/features/onboarding/presentation/components/home/FormField";
+import { useUserForm } from "@/features/onboarding/presentation/hooks/useUserForm";
 import { Button, Card, Container, Header } from "@/shared/components";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
 import type { RootStackParamList } from "@/shared/types";
-import { useUserForm } from "@/features/onboarding/presentation/hooks/useUserForm";
-import { FormField } from "@/features/onboarding/presentation/components/home/FormField";
-import { CheckboxField } from "@/features/onboarding/presentation/components/home/CheckboxField";
-import { DocumentInput } from "@/features/onboarding/presentation/components/home/DocumentInput";
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 

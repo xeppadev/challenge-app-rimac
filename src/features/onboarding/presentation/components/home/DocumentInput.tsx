@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 import { Control } from "react-hook-form";
-import { FormField } from "./FormField";
+import { StyleSheet, View } from "react-native";
 import { SPACING } from "@/shared/constants";
+import { FormField } from "./FormField";
 
 interface DocumentInputProps {
   control: Control<any>;

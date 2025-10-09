@@ -1,9 +1,9 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { User } from "@/features/onboarding/domain/entities/User";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
-import { User } from "@/features/onboarding/domain/entities/User";
 
 interface PersonInfoSectionProps {
   user: User;

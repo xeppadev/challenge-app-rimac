@@ -1,10 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
+import { Plan } from "@/features/onboarding/domain/entities/Plan";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
-import { Plan } from "@/features/onboarding/domain/entities/Plan";
 
 interface PlanCardProps {
   plan: Plan;

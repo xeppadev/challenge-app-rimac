@@ -1,6 +1,6 @@
 import React from 'react';
-import { renderWithProviders, screen, fireEvent, waitFor } from '../utils/test-utils';
 import { PlansScreen } from '@/features/onboarding/presentation/screens/PlansScreen';
+import { fireEvent, renderWithProviders, screen, waitFor } from '../utils/test-utils';
 
 // Mock hooks to control data
 jest.mock('@/features/onboarding/presentation/hooks/useUser', () => ({

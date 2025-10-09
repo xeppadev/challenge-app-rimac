@@ -1,6 +1,6 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";

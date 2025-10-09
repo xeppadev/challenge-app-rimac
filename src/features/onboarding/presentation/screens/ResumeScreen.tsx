@@ -5,12 +5,11 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-
-import { Container, Header } from "@/shared/components";
-import type { RootStackParamList, User } from "@/shared/types";
-import { useFormStore } from "@/features/onboarding/presentation/store/useFormStore";
 import { ResumeHeader } from "@/features/onboarding/presentation/components/resume/ResumeHeader";
 import { ResumeSummaryCard } from "@/features/onboarding/presentation/components/resume/ResumeSummaryCard";
+import { useFormStore } from "@/features/onboarding/presentation/store/useFormStore";
+import { Container, Header } from "@/shared/components";
+import type { RootStackParamList, User } from "@/shared/types";
 
 
 type ResumeScreenRouteProp = RouteProp<RootStackParamList, "Resume">;

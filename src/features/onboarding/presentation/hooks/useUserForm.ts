@@ -1,6 +1,6 @@
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { userFormSchema, UserFormData } from '@/features/onboarding/domain/validation/userFormSchema';
+import { useForm } from 'react-hook-form';
+import { UserFormData, userFormSchema } from '@/features/onboarding/domain/validation/userFormSchema';
 import { useFormStore } from '@/features/onboarding/presentation/store/useFormStore';
 
 export const useUserForm = () => {

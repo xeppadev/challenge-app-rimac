@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { Plan } from "@/features/onboarding/domain/entities/Plan";
+import { User } from "@/features/onboarding/domain/entities/User";
 import { Card } from "@/shared/components";
 import { COLORS, SPACING } from "@/shared/constants";
-import { PersonInfoSection } from "./PersonInfoSection";
-import { PaymentResponsibleSection } from "./PaymentResponsibleSection";
 import { ChosenPlanSection } from "./ChosenPlanSection";
-import { User } from "@/features/onboarding/domain/entities/User";
-import { Plan } from "@/features/onboarding/domain/entities/Plan";
+import { PaymentResponsibleSection } from "./PaymentResponsibleSection";
+import { PersonInfoSection } from "./PersonInfoSection";
 
 interface ResumeSummaryCardProps {
   user: User;

@@ -1,8 +1,8 @@
-import React from 'react';
-import { render, RenderOptions } from '@testing-library/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import { RenderOptions, render } from '@testing-library/react-native';
+import React from 'react';
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context';
 
 const createTestQueryClient = () =>
 	new QueryClient({

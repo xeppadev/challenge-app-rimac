@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Plan } from "@/features/onboarding/domain/entities/Plan";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
-import { Plan } from "@/features/onboarding/domain/entities/Plan";
 
 interface ChosenPlanSectionProps {
   plan: Plan;

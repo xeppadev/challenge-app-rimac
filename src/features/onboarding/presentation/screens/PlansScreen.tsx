@@ -7,18 +7,17 @@ import {
   Text,
   View,
 } from "react-native";
-
-import { Button, Card, Container, Header } from "@/shared/components";
-import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
-import { useResponsive } from "@/shared/hooks/useResponsive";
-import type { RootStackParamList, User } from "@/shared/types";
+import { PlanCard } from "@/features/onboarding/presentation/components/plans/PlanCard";
+import { SelectionOption } from "@/features/onboarding/presentation/components/plans/SelectionOption";
 import {
   usePlans,
   usePlansByAge,
 } from "@/features/onboarding/presentation/hooks/usePlans";
 import { useUser } from "@/features/onboarding/presentation/hooks/useUser";
-import { PlanCard } from "@/features/onboarding/presentation/components/plans/PlanCard";
-import { SelectionOption } from "@/features/onboarding/presentation/components/plans/SelectionOption";
+import { Button, Card, Container, Header } from "@/shared/components";
+import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
+import { useResponsive } from "@/shared/hooks/useResponsive";
+import type { RootStackParamList, User } from "@/shared/types";
 import { calculateAge } from "@/shared/utils";
 
 type PlansScreenNavigationProp = StackNavigationProp<
