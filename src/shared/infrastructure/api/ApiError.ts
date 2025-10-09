@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 /**
  * API Error class that represents errors from API calls
  */
@@ -12,12 +14,12 @@ export enum ApiErrorCode {
 export class ApiError extends Error {
   public readonly code: ApiErrorCode;
   public readonly status?: number;
-  public readonly originalError?: any;
+  public readonly originalError?: unknown;
 
   constructor(
     message: string,
     code: ApiErrorCode = ApiErrorCode.UNKNOWN_ERROR,
-    originalError?: any,
+    originalError?: unknown,
     status?: number
   ) {
     super(message);
@@ -30,7 +32,7 @@ export class ApiError extends Error {
   /**
    * Create an ApiError from an Axios error
    */
-  static fromAxiosError(error: any): ApiError {
+  static fromAxiosError(error: AxiosError<{ message?: string }>): ApiError {
     if (error.code === 'ECONNABORTED') {
       return new ApiError(
         'Request timeout',

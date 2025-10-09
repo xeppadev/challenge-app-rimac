@@ -1,20 +1,13 @@
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Plan } from "@/features/onboarding/domain/entities/Plan";
 import { PlanCard } from "@/features/onboarding/presentation/components/plans/PlanCard";
 import { SelectionOption } from "@/features/onboarding/presentation/components/plans/SelectionOption";
-import {
-  usePlans,
-  usePlansByAge,
-} from "@/features/onboarding/presentation/hooks/usePlans";
+import { usePlansByAge } from "@/features/onboarding/presentation/hooks/usePlans";
 import { useUser } from "@/features/onboarding/presentation/hooks/useUser";
-import { Button, Card, Container, Header } from "@/shared/components";
+import { Card, Container, Header } from "@/shared/components";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
 import type { RootStackParamList, User } from "@/shared/types";
@@ -50,7 +43,7 @@ export const PlansScreen: React.FC = () => {
   const isLoading = userLoading || plansLoading;
   const error = plansError;
 
-  const handleSelectPlan = (plan: any) => {
+  const handleSelectPlan = (plan: Plan) => {
     // Apply 5% discount if it's for someone else
     const finalPlan =
       selectionType === "for-other"
@@ -175,7 +168,6 @@ export const PlansScreen: React.FC = () => {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-
   },
   loadingContainer: {
     flex: 1,
@@ -190,6 +182,7 @@ const styles = StyleSheet.create({
   // Selection Card Styles
   selectionCard: {
     marginBottom: SPACING.lg,
+    marginHorizontal: SPACING.xs,
   },
   selectionTitle: {
     fontWeight: "bold",

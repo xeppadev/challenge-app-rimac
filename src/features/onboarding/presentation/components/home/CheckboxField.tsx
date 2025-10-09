@@ -1,23 +1,29 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Control, Controller, FieldError } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldError,
+  FieldValues,
+  Path,
+} from "react-hook-form";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
 
-interface CheckboxFieldProps {
-  control: Control<any>;
-  name: string;
+interface CheckboxFieldProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
   label: string;
   error?: FieldError;
 }
 
-export const CheckboxField: React.FC<CheckboxFieldProps> = ({
+export const CheckboxField = <T extends FieldValues>({
   control,
   name,
   label,
   error,
-}) => {
+}: CheckboxFieldProps<T>) => {
   const { getResponsiveFontSize } = useResponsive();
 
   return (

@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 3.84,
     elevation: 5,
+    margin: SPACING.xs,
   },
   separator: {
     height: 1,

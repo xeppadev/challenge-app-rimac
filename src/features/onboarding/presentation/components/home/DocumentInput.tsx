@@ -1,22 +1,28 @@
 import React from "react";
-import { Control } from "react-hook-form";
+import {
+  Control,
+  FieldError,
+  FieldErrors,
+  FieldValues,
+  Path,
+} from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { SPACING } from "@/shared/constants";
 import { FormField } from "./FormField";
 
-interface DocumentInputProps {
-  control: Control<any>;
-  documentTypeFieldName: string;
-  documentNumberFieldName: string;
-  error?: any;
+interface DocumentInputProps<T extends FieldValues> {
+  control: Control<T>;
+  documentTypeFieldName: Path<T>;
+  documentNumberFieldName: Path<T>;
+  error?: FieldErrors<T>;
 }
 
-export const DocumentInput: React.FC<DocumentInputProps> = ({
+export const DocumentInput = <T extends FieldValues>({
   control,
   documentTypeFieldName,
   documentNumberFieldName,
   error,
-}) => {
+}: DocumentInputProps<T>) => {
   return (
     <View style={styles.container}>
       <FormField
@@ -26,7 +32,7 @@ export const DocumentInput: React.FC<DocumentInputProps> = ({
         placeholder="Ingresa tu número de documento"
         keyboardType="numeric"
         maxLength={8}
-        error={error?.[documentNumberFieldName]}
+        error={error?.[documentNumberFieldName] as FieldError | undefined}
         prefix="DNI"
       />
     </View>

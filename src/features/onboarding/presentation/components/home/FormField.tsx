@@ -1,13 +1,19 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Control, Controller, FieldError } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldError,
+  FieldValues,
+  Path,
+} from "react-hook-form";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
 
-interface FormFieldProps {
-  control: Control<any>;
-  name: string;
+interface FormFieldProps<T extends FieldValues> {
+  control: Control<T>;
+  name: Path<T>;
   label: string;
   placeholder?: string;
   error?: FieldError;
@@ -16,7 +22,7 @@ interface FormFieldProps {
   prefix?: string;
 }
 
-export const FormField: React.FC<FormFieldProps> = ({
+export const FormField = <T extends FieldValues>({
   control,
   name,
   label,
@@ -25,7 +31,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   keyboardType = "default",
   maxLength,
   prefix,
-}) => {
+}: FormFieldProps<T>) => {
   const { getResponsiveFontSize } = useResponsive();
 
   return (

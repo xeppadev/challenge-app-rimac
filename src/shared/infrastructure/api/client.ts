@@ -96,7 +96,7 @@ export class ApiClient {
    * @param data Data to send
    * @returns Promise with ApiResult containing data or error
    */
-  async post<T>(url: string, data: any): Promise<ApiResult<T>> {
+  async post<T>(url: string, data: unknown): Promise<ApiResult<T>> {
     try {
       const response = await this.client.post<T>(url, data);
       return {
@@ -115,7 +115,7 @@ export class ApiClient {
    * @param data Data to send
    * @returns Promise with ApiResult containing data or error
    */
-  async put<T>(url: string, data: any): Promise<ApiResult<T>> {
+  async put<T>(url: string, data: unknown): Promise<ApiResult<T>> {
     try {
       const response = await this.client.put<T>(url, data);
       return {
@@ -133,14 +133,20 @@ export class ApiClient {
    * @param error Error caught during API request
    * @returns ApiResult with error information
    */
-  private handleError<T>(error: any): ApiResult<T> {
+  private handleError<T>(error: unknown): ApiResult<T> {
     let apiError: ApiError;
 
     if (isAxiosError(error)) {
       apiError = ApiError.fromAxiosError(error);
-    } else {
+    } else if (error instanceof Error) {
       apiError = new ApiError(
         error.message || 'Unknown error occurred',
+        ApiErrorCode.UNKNOWN_ERROR,
+        error
+      );
+    } else {
+      apiError = new ApiError(
+        'Unknown error occurred',
         ApiErrorCode.UNKNOWN_ERROR,
         error
       );

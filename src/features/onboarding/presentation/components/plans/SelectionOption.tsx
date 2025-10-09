@@ -1,6 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
@@ -8,7 +15,7 @@ import { useResponsive } from "@/shared/hooks/useResponsive";
 interface SelectionOptionProps {
   title: string;
   description: string;
-  icon: any; // Image source
+  icon: ImageSourcePropType;
   isSelected: boolean;
   onPress: () => void;
 }
@@ -33,10 +40,7 @@ export const SelectionOption: React.FC<SelectionOptionProps> = ({
       <View style={styles.selectionOptionContent}>
         <Image
           source={icon}
-          style={[
-            styles.optionIcon,
-            isSelected && styles.selectedOptionIcon,
-          ]}
+          style={[styles.optionIcon, isSelected && styles.selectedOptionIcon]}
         />
         <View style={styles.selectionOptionText}>
           <Text
