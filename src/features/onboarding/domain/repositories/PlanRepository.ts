@@ -1,4 +1,4 @@
-import { Plan } from '../../../onboarding/domain/entities/Plan';
+import { Plan } from '@/features/onboarding/domain/entities/Plan';
 
 /**
  * Interface of the plan repository that defines the available operations

@@ -1,4 +1,4 @@
-import { User } from '../../../onboarding/domain/entities/entities/User';
+import { User } from '@/features/onboarding/domain/entities/User';
 
 /**
  * Interface of the user repository that defines the available operations
