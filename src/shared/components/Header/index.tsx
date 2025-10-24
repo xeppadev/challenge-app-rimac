@@ -1,8 +1,9 @@
-import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
+import { Ionicons } from "@expo/vector-icons";
 import { useResponsive } from "@/shared/hooks/useResponsive";
+import Logo from "@/assets/images/Logo.svg";
 
 interface HeaderProps {
   showBackButton?: boolean;
@@ -22,10 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
       <View style={styles.topRow}>
         {/* Logo */}
         <View style={styles.logoContainer}>
-          <Image
-            source={require("@/assets/images/logo.png")}
-            resizeMode="contain"
-          />
+          <Logo width={85} height={35} />
         </View>
 
         {/* Phone */}
