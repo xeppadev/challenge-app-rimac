@@ -1,6 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import IcHomeLight from "@/assets/icons/IcHomeLight.svg";
+import IcHospitalLight from "@/assets/icons/IcHospitalLight.svg";
 import { Plan } from "@/features/onboarding/domain/entities/Plan";
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
@@ -17,82 +19,83 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan, onSelect, showDiscount
   // Calculate discounted price if needed
   const finalPrice = showDiscount ? Math.round(plan.price * 0.95) : plan.price;
 
+  // Determine which icon to use based on plan name
+  const PlanIcon = plan.name.toLowerCase().includes("casa") || plan.name.toLowerCase().includes("home")
+    ? IcHomeLight
+    : IcHospitalLight;
+
   return (
-    <TouchableOpacity style={styles.container} onPress={onSelect}>
+    <View style={styles.container}>
+      {/* Header with icon */}
       <View style={styles.header}>
         <View style={styles.titleContainer}>
-          <Text
-            style={[
-              styles.planName,
-              { fontSize: getResponsiveFontSize(FONT_SIZES.lg) },
-            ]}
-          >
-            {plan.name}
-          </Text>
-          <Text
-            style={[
-              styles.ageRange,
-              { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
-            ]}
-          >
-            Hasta {plan.age} años
-          </Text>
-        </View>
-        <View style={styles.priceContainer}>
           {showDiscount && (
-            <View style={styles.discountContainer}>
+            <View style={styles.discountBadge}>
               <Text
                 style={[
-                  styles.originalPrice,
-                  { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
-                ]}
-              >
-                ${plan.price}
-              </Text>
-              <Text
-                style={[
-                  styles.discountBadge,
+                  styles.discountText,
                   { fontSize: getResponsiveFontSize(FONT_SIZES.xs) },
                 ]}
               >
-                -5%
+                DESCUENTO 5%
               </Text>
             </View>
           )}
           <Text
             style={[
-              styles.price,
+              styles.planName,
               { fontSize: getResponsiveFontSize(FONT_SIZES.xl) },
             ]}
           >
-            ${finalPrice}
+            {plan.name}
           </Text>
-          <Text
-            style={[
-              styles.priceUnit,
-              { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
-            ]}
-          >
-            /mes
-          </Text>
+        </View>
+        <View style={styles.iconContainer}>
+          <PlanIcon width={56} height={56} />
         </View>
       </View>
 
-      <View style={styles.featuresContainer}>
+      {/* Price section */}
+      <View style={styles.priceSection}>
         <Text
           style={[
-            styles.featuresTitle,
-            { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
+            styles.priceLabel,
+            { fontSize: getResponsiveFontSize(FONT_SIZES.xs) },
           ]}
         >
-          Beneficios incluidos:
+          COSTO DEL PLAN
         </Text>
+        {showDiscount && (
+          <Text
+            style={[
+              styles.originalPrice,
+              { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
+            ]}
+          >
+            ${plan.price} antes
+          </Text>
+        )}
+        <Text
+          style={[
+            styles.price,
+            { fontSize: getResponsiveFontSize(FONT_SIZES.xxl) },
+          ]}
+        >
+          ${finalPrice} al mes
+        </Text>
+      </View>
+
+      {/* Divider */}
+      <View style={styles.divider} />
+
+      {/* Features */}
+      <View style={styles.featuresContainer}>
         {plan.description.map((feature, index) => (
           <View key={index} style={styles.featureRow}>
             <Ionicons
-              name="checkmark-circle"
-              size={16}
-              color={COLORS.tertiary}
+              name="person"
+              size={20}
+              color={COLORS.darkBlue}
             />
             <Text
               style={[
@@ -106,110 +109,107 @@ export const PlanCard: React.FC<PlanCardProps> = ({ plan, onSelect, showDiscount
         ))}
       </View>
 
-      <View style={styles.footer}>
+      {/* Button */}
+      <TouchableOpacity style={styles.selectButton} onPress={onSelect}>
         <Text
           style={[
-            styles.selectText,
-            { fontSize: getResponsiveFontSize(FONT_SIZES.sm) },
+            styles.selectButtonText,
+            { fontSize: getResponsiveFontSize(FONT_SIZES.md) },
           ]}
         >
-          Seleccionar plan →
+          Seleccionar plan
         </Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.white,
-    borderRadius: 12,
-    padding: SPACING.lg,
-    marginBottom: SPACING.md,
-    flex: 1, // Use all available height
-    justifyContent: "space-between", // Distribute content evenly
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
+    borderRadius: 24,
+    padding: SPACING.xl,
+
+    borderWidth: 2,
+    borderColor: "#E8E8E8",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.lg,
   },
   titleContainer: {
     flex: 1,
   },
+  discountBadge: {
+    backgroundColor: "#7DF0BA",
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 4,
+    borderRadius: 6,
+    alignSelf: "flex-start",
+    marginBottom: SPACING.sm,
+  },
+  discountText: {
+    color: COLORS.darkBlue,
+    fontWeight: "900",
+    letterSpacing: 0.5,
+  },
   planName: {
     fontWeight: "bold",
     color: COLORS.darkBlue,
-    marginBottom: SPACING.xs,
   },
-  ageRange: {
+  iconContainer: {
+    width: 56,
+    height: 56,
+  },
+  priceSection: {
+    marginBottom: SPACING.md,
+  },
+  priceLabel: {
     color: COLORS.gray,
-  },
-  priceContainer: {
-    alignItems: "flex-end",
-  },
-  discountContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: SPACING.xs,
+    fontWeight: "700",
+    letterSpacing: 0.8,
     marginBottom: SPACING.xs,
   },
   originalPrice: {
     textDecorationLine: "line-through",
     color: COLORS.gray,
-  },
-  discountBadge: {
-    backgroundColor: COLORS.tertiary,
-    color: COLORS.white,
-    paddingHorizontal: SPACING.xs,
-    paddingVertical: 2,
-    borderRadius: 4,
-    fontWeight: "bold",
+    marginBottom: 4,
   },
   price: {
     fontWeight: "bold",
-    color: COLORS.primary,
+    color: COLORS.darkBlue,
   },
-  priceUnit: {
-    color: COLORS.gray,
+  divider: {
+    height: 1,
+    backgroundColor: "#E8E8E8",
+    marginVertical: SPACING.lg,
   },
   featuresContainer: {
-    flex: 1, // Take up remaining space
-    marginBottom: SPACING.sm,
-  },
-  featuresTitle: {
-    fontWeight: "600",
-    color: COLORS.darkBlue,
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.lg,
   },
   featureRow: {
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     gap: SPACING.sm,
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.md,
   },
   feature: {
     color: COLORS.darkBlue,
     flex: 1,
-    lineHeight: 18,
+    lineHeight: 20,
   },
-  footer: {
-    borderTopWidth: 1,
-    borderTopColor: COLORS.lightGray,
-    paddingTop: SPACING.md,
+  selectButton: {
+    backgroundColor: COLORS.primary,
+    borderRadius: 40,
+    paddingVertical: SPACING.md,
+    paddingHorizontal: SPACING.xl,
     alignItems: "center",
+    justifyContent: "center",
   },
-  selectText: {
-    color: COLORS.primary,
-    fontWeight: "600",
+  selectButtonText: {
+    color: COLORS.white,
+    fontWeight: "bold",
   },
 });

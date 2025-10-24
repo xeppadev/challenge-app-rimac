@@ -2,6 +2,8 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import IcProtectionLight from "@/assets/icons/IcProtectionLight.svg";
+import IcAddUserLight from "@/assets/icons/IcAddUserLight.svg";
 import { Plan } from "@/features/onboarding/domain/entities/Plan";
 import { PlanCard } from "@/features/onboarding/presentation/components/plans/PlanCard";
 import { SelectionOption } from "@/features/onboarding/presentation/components/plans/SelectionOption";
@@ -107,7 +109,7 @@ export const PlansScreen: React.FC = () => {
             <SelectionOption
               title="Para mí"
               description="Cotiza tu seguro de salud y agrega familiares si así lo deseas."
-              icon={require("@/assets/icons/IcProtectionLight.png")}
+              icon={IcProtectionLight}
               isSelected={selectionType === "for-me"}
               onPress={() => setSelectionType("for-me")}
             />
@@ -115,7 +117,7 @@ export const PlansScreen: React.FC = () => {
             <SelectionOption
               title="Para alguien más"
               description="Realiza una cotización para uno de tus familiares o cualquier persona."
-              icon={require("@/assets/icons/IcAddUserLight.png")}
+              icon={IcAddUserLight}
               isSelected={selectionType === "for-other"}
               onPress={() => setSelectionType("for-other")}
             />
@@ -220,7 +222,7 @@ const styles = StyleSheet.create({
   },
   planCardWrapper: {
     width: 280,
-    height: 400, // Fixed height for all cards
     marginRight: SPACING.md,
+    marginBottom: SPACING.lg,
   },
 });

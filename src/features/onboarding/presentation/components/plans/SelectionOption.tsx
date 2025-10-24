@@ -1,13 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {
-  Image,
-  ImageSourcePropType,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SvgProps } from "react-native-svg";
 
 import { COLORS, FONT_SIZES, SPACING } from "@/shared/constants";
 import { useResponsive } from "@/shared/hooks/useResponsive";
@@ -15,7 +14,7 @@ import { useResponsive } from "@/shared/hooks/useResponsive";
 interface SelectionOptionProps {
   title: string;
   description: string;
-  icon: ImageSourcePropType;
+  icon: React.FC<SvgProps>;
   isSelected: boolean;
   onPress: () => void;
 }
@@ -23,7 +22,7 @@ interface SelectionOptionProps {
 export const SelectionOption: React.FC<SelectionOptionProps> = ({
   title,
   description,
-  icon,
+  icon: Icon,
   isSelected,
   onPress,
 }) => {
@@ -38,9 +37,10 @@ export const SelectionOption: React.FC<SelectionOptionProps> = ({
       onPress={onPress}
     >
       <View style={styles.selectionOptionContent}>
-        <Image
-          source={icon}
-          style={[styles.optionIcon, isSelected && styles.selectedOptionIcon]}
+        <Icon
+          width={24}
+          height={24}
+          color={isSelected ? COLORS.primary : COLORS.gray}
         />
         <View style={styles.selectionOptionText}>
           <Text
@@ -85,14 +85,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: SPACING.md,
-  },
-  optionIcon: {
-    width: 24,
-    height: 24,
-    tintColor: COLORS.gray,
-  },
-  selectedOptionIcon: {
-    tintColor: COLORS.primary,
   },
   selectionOptionText: {
     flex: 1,
